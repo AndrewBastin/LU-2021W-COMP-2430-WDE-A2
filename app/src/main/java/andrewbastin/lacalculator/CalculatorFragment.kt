@@ -1,7 +1,5 @@
 package andrewbastin.lacalculator
 
-import andrewbastin.lacalculator.parser.Expression
-import andrewbastin.lacalculator.parser.Lexer
 import andrewbastin.lacalculator.utils.hasFractional
 import android.os.Build
 import android.os.Bundle
@@ -93,7 +91,7 @@ class CalculatorFragment : Fragment() {
 
         buttonEquals.setOnClickListener {
             try {
-                var count = Expression.createExpression(Lexer.lex(calcText.text.toString())).evaluate()
+                val answer = MainController.performCalculation(calcText.text.toString())
 
                 slideOutBottomAnim.setAnimationListener(object : Animation.AnimationListener {
 
@@ -104,7 +102,7 @@ class CalculatorFragment : Fragment() {
 
                         // If there is now fractional value, remove that bit
                         calcText.setText(
-                            if (count.hasFractional()) count.toInt().toString() else count.toString()
+                            if (!answer.hasFractional()) answer.toInt().toString() else answer.toString()
                         )
                         calcText.setSelection(calcText.text.length)
 
