@@ -2,6 +2,7 @@ package andrewbastin.lacalculator
 
 import andrewbastin.lacalculator.parser.Expression
 import andrewbastin.lacalculator.parser.Lexer
+import andrewbastin.lacalculator.utils.hasFractional
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
